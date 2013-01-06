@@ -102,11 +102,14 @@
     
     [checkBetButton.titleLabel setFont:[UIFont fontWithName:@"American Captain" size:36]];
     [checkBetButton setTitleColor:[UIColor colorWithRed:78.0/255.0 green:149.0/255.0 blue:69.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [checkBetButton setTitleColor:[UIColor colorWithRed:66/255.0 green:122/255.0 blue:59/255.0 alpha:1] forState:UIControlStateHighlighted];
     [checkBetButton setTitleColor:[UIColor colorWithRed:123.0/255.0 green:146.0/255.0 blue:120.0/255.0 alpha:1] forState:UIControlStateDisabled];
     [checkBetButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     
+    
     [foldButton.titleLabel setFont:[UIFont fontWithName:@"American Captain" size:36]];
     [foldButton setTitleColor:[UIColor colorWithRed:78.0/255.0 green:149.0/255.0 blue:69.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [foldButton setTitleColor:[UIColor colorWithRed:66/255.0 green:122/255.0 blue:59/255.0 alpha:1] forState:UIControlStateHighlighted];
     [foldButton setTitleColor:[UIColor colorWithRed:123.0/255.0 green:146.0/255.0 blue:120.0/255.0 alpha:1] forState:UIControlStateDisabled];
     [foldButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     
@@ -822,8 +825,8 @@
     
     CGAffineTransform transform = CGAffineTransformMakeRotation(3.14159*2);
     
-    [UIView animateWithDuration:0.5
-                          delay:0.5
+    [UIView animateWithDuration:1
+                          delay:1
                         options:UIViewAnimationCurveEaseIn
                      animations:^{
                          blindChip.frame = onScreenChip;
@@ -841,7 +844,7 @@
     
     CGAffineTransform transform = CGAffineTransformMakeRotation(3.14159*2);
     
-    [UIView animateWithDuration:0.5
+    [UIView animateWithDuration:1
                           delay:0
                         options:UIViewAnimationCurveEaseOut
                      animations:^{

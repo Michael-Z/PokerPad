@@ -340,6 +340,11 @@
             
             break;
         }
+        case 11:
+        {
+            [gameController hideBlindChip];
+            break;
+        }
         case 20: // hand won
         {
             float winnings = [[dataRecieved objectAtIndex:1] floatValue];
@@ -367,11 +372,6 @@
         case 23:
         {
             NSString *message = [dataRecieved objectAtIndex:1];
-            if([message isEqualToString:@"New Hand Started"]){
-                if(!gameController.blindChip.hidden) {
-                    [gameController hideBlindChip];
-                }
-            }
             [gameController.gameStatusLabel setText:message];
             break;
         }

@@ -22,8 +22,7 @@
     int verticalOffset;
     IBOutlet UIButton *joinGameButton;
     IBOutlet UITextField *nameField;
-    IBOutlet UIImageView *secondimageView;
-    IBOutlet UIImageView *AUimageView;
+
     IBOutlet UIImageView *logo;
     
     IBOutlet UIView *centerView, *helpView, *aboutView;
@@ -45,6 +44,7 @@
     
     IBOutlet UILabel *helpTitle;
     IBOutlet UITextView *helpTextView;
+    IBOutlet UIButton *helpBackButton;
     
     /* aboutView UI Elements */
     
@@ -62,8 +62,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *helpTitle, *aboutTitle;
 @property (nonatomic, retain) IBOutlet UITextView *helpTextView, *aboutTextView;
 
-@property (nonatomic, retain) UIButton *helpButton;
-@property (nonatomic, retain) UIButton *aboutButton;
+@property (nonatomic, retain) IBOutlet UIButton *helpButton;
+@property (nonatomic, retain) IBOutlet UIButton *aboutButton;
 
 
 //@property (nonatomic, retain) GKSession *btSession;

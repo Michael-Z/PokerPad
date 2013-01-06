@@ -28,27 +28,47 @@
 
 - (void)viewDidLoad
 {
+    
+    [self splashToMainScreen];
+    
     NSLog(@"name field contents: '%@'",nameField.text);
     connected = NO;
     nameField.delegate = self;
     if([nameField.text length] <= 0) {
         [joinGameButton setEnabled:NO];
     }
-    UIFont *cooperBlack = [UIFont fontWithName:@"CooperBeckerPosterBlack" size:nameField.font.pointSize];
+    UIFont *cooperBlack = [UIFont fontWithName:@"Comfortaa" size:nameField.font.pointSize];
     [nameField setFont:cooperBlack];
     //splash screen
     //self.centerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@".png"]];
+    [joinGameButton.titleLabel setFont:[UIFont fontWithName:@"American Captain" size:36]];
+    [joinGameButton setTitleColor:[UIColor colorWithRed:78.0/255.0 green:149.0/255.0 blue:69.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [joinGameButton setTitleColor:[UIColor colorWithRed:66/255.0 green:122/255.0 blue:59/255.0 alpha:1] forState:UIControlStateHighlighted];
+    [joinGameButton setTitleColor:[UIColor colorWithRed:123.0/255.0 green:146.0/255.0 blue:120.0/255.0 alpha:1] forState:UIControlStateDisabled];
+    [joinGameButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    [helpButton.titleLabel setFont:[UIFont fontWithName:@"American Captain" size:36]];
+    [helpButton setTitleColor:[UIColor colorWithRed:78.0/255.0 green:149.0/255.0 blue:69.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [helpButton setTitleColor:[UIColor colorWithRed:66/255.0 green:122/255.0 blue:59/255.0 alpha:1] forState:UIControlStateHighlighted];
+    [helpButton setTitleColor:[UIColor colorWithRed:123.0/255.0 green:146.0/255.0 blue:120.0/255.0 alpha:1] forState:UIControlStateDisabled];
+    [helpButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    [aboutButton.titleLabel setFont:[UIFont fontWithName:@"American Captain" size:36]];
+    [aboutButton setTitleColor:[UIColor colorWithRed:78.0/255.0 green:149.0/255.0 blue:69.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [aboutButton setTitleColor:[UIColor colorWithRed:66/255.0 green:122/255.0 blue:59/255.0 alpha:1] forState:UIControlStateHighlighted];
+    [aboutButton setTitleColor:[UIColor colorWithRed:123.0/255.0 green:146.0/255.0 blue:120.0/255.0 alpha:1] forState:UIControlStateDisabled];
+    [aboutButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     
     [super viewDidLoad];
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     if([UIScreen mainScreen].scale == 2.f && screenHeight == 568.0f){
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iphone5-felt3.png"]];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iph5-felt.png"]];
         self.centerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"stitched-leather-iphone5.png"]];
     } else {
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iphone-felt.png"]];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iph-felt.png"]];
         self.centerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"stitched-leather-iphone.png"]];
     }
-    
+    self.centerView.backgroundColor = [UIColor clearColor];
     
     [UIApplication sharedApplication].idleTimerDisabled = YES;
 
@@ -84,6 +104,33 @@
     NSLog(@"Session connection failed with error %@",[error localizedDescription]);
 }
 
+-(void)splashToMainScreen {
+    [nameField setAlpha:0];
+    [joinGameButton setAlpha:0];
+    [helpButton setAlpha:0];
+    [aboutButton setAlpha:0];
+    
+    CGRect upperLogoPosition = logo.frame;
+    
+    logo.center = CGPointMake(110, 285);
+    [UIView animateWithDuration:1
+                          delay:0
+                        options:UIViewAnimationTransitionNone
+                     animations:^{
+                         logo.frame = upperLogoPosition;
+                     }
+                     completion:^(BOOL finished){
+                     }];
+    
+    [UIView animateWithDuration:0.5 delay:1 options:UIViewAnimationCurveEaseIn animations:^{
+        [nameField setAlpha:1];
+        [joinGameButton setAlpha:1];
+        [helpButton setAlpha:1];
+        [aboutButton setAlpha:1];
+    }completion:^(BOOL finished){}];
+    
+}
+
 /* Custom Methods */
 
 -(IBAction) joinGame:(id)sender {
@@ -92,7 +139,7 @@
     
     HUD.delegate = self;
     
-    connectionTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(stopConnection:) userInfo:nil repeats:NO];
+    connectionTimer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(stopConnection:) userInfo:nil repeats:NO];
 
     self.btController = [[ClientBluetoothController alloc] init];
     
@@ -136,6 +183,7 @@
     HUD.labelText = @"No Games Found";
     
     [HUD hide:YES afterDelay:2];
+    [btController.btSession disconnectFromAllPeers];
 }
 
 //textfield move when keyboard appear
@@ -209,9 +257,11 @@
     
     // init helpView UI Elements
     [helpTitle setText:@"PokerPad\nHelp"];
-    [helpTitle setFont:[UIFont fontWithName:@"CooperBeckerPosterBlack" size:25]];
+    
+    
+    [helpTitle setFont:[UIFont fontWithName:@"American Captain" size:36]];
     helpTitle.alpha = 0.5;
-    [helpTextView setFont:[UIFont fontWithName:@"CooperBeckerPosterBlack" size:15]];
+    [helpTextView setFont:[UIFont fontWithName:@"Comfortaa" size:15]];
     [helpTextView setTextColor:[UIColor whiteColor]];
     helpTextView.alpha = 0.5;
     helpTextView.text = [NSString stringWithFormat:@"1)  Create a Game\n\t-  Press the PokerPad logo upon launch to create a game.\n\t-  From there, a settings screen will appear, allowing you to modify some game settings and to see who has joined the game.\n\t-  Once enough players have joined, the start game button will highlight, allowing you to start the game.\n\n2)  Dealing a Hand\n\t-  Simply press the start hand button to deal a hand.\n\t-  From there, all the bet handling and remaining dealing is automated by the iPad until the start of another hand."];
@@ -225,6 +275,12 @@
     aboutTextView.alpha = 0.5;
     
     aboutTextView.text = [NSString stringWithFormat:@"Designed and Developed by:\nMatt Wahlig\nDanny Franklin\nMatthew Johnson\nMingyao Zhu\nRyan Burr"];
+    
+    [helpBackButton.titleLabel setFont:[UIFont fontWithName:@"American Captain" size:36]];
+    [helpBackButton setTitleColor:[UIColor colorWithRed:78.0/255.0 green:149.0/255.0 blue:69.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [helpBackButton setTitleColor:[UIColor colorWithRed:66/255.0 green:122/255.0 blue:59/255.0 alpha:1] forState:UIControlStateHighlighted];
+    [helpBackButton setTitleColor:[UIColor colorWithRed:123.0/255.0 green:146.0/255.0 blue:120.0/255.0 alpha:1] forState:UIControlStateDisabled];
+    [helpBackButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

@@ -88,6 +88,9 @@
     UIButton *endGameButton;
     UIButton *cancelButton;
     
+    /* Game Statistics */
+    NSInteger handsPlayed;
+    
 }
 
 @property (nonatomic) BOOL viewLoaded;
@@ -150,6 +153,10 @@
 
 @property (nonatomic, retain) IBOutlet UIView *optionsView;
 @property (nonatomic, retain) IBOutlet UIButton *endGameButton, *cancelButton;
+
+/* Game Statistics Variables */
+
+@property (nonatomic) NSInteger handsPlayed;
 
 -(void)setLabelsFont;
 

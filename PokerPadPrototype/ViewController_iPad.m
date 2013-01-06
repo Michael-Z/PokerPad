@@ -37,6 +37,7 @@
 @synthesize chipSetControl;
 @synthesize chip1, chip2, chip3, chip4, chip5;
 @synthesize smallChipSetSelected;
+@synthesize btIndicator;
 
 
 @synthesize btController;
@@ -54,14 +55,50 @@
 - (void)viewDidLoad
 {
     [self setFonts];
+    
+    [helpButton.titleLabel setFont:[UIFont fontWithName:@"American Captain" size:45]];
+    [helpButton setTitleColor:[UIColor colorWithRed:135/255.0 green:99/255.0 blue:64/255.0 alpha:1] forState:UIControlStateNormal];
+    [helpButton setTitleColor:[UIColor colorWithRed:94/255.0 green:69/255.0 blue:45/255.0 alpha:1] forState:UIControlStateHighlighted];
+    [helpButton setTitleColor:[UIColor colorWithRed:148/255.0 green:140/255.0 blue:130/255.0 alpha:1] forState:UIControlStateDisabled];
+    [helpButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    [aboutButton.titleLabel setFont:[UIFont fontWithName:@"American Captain" size:45]];
+    [aboutButton setTitleColor:[UIColor colorWithRed:135/255.0 green:99/255.0 blue:64/255.0 alpha:1] forState:UIControlStateNormal];
+    [aboutButton setTitleColor:[UIColor colorWithRed:94/255.0 green:69/255.0 blue:45/255.0 alpha:1] forState:UIControlStateHighlighted];
+    [aboutButton setTitleColor:[UIColor colorWithRed:148/255.0 green:140/255.0 blue:130/255.0 alpha:1] forState:UIControlStateDisabled];
+    [aboutButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    
+    [startGameButton.titleLabel setFont:[UIFont fontWithName:@"American Captain" size:45]];
+    [startGameButton setTitleColor:[UIColor colorWithRed:78.0/255.0 green:149.0/255.0 blue:69.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [startGameButton setTitleColor:[UIColor colorWithRed:66/255.0 green:122/255.0 blue:59/255.0 alpha:1] forState:UIControlStateHighlighted];
+    [startGameButton setTitleColor:[UIColor colorWithRed:123.0/255.0 green:146.0/255.0 blue:120.0/255.0 alpha:1] forState:UIControlStateDisabled];
+    [startGameButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    [startGameButton.titleLabel setFont:[UIFont fontWithName:@"American Captain" size:45]];
+    [startGameButton setTitleColor:[UIColor colorWithRed:78.0/255.0 green:149.0/255.0 blue:69.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [startGameButton setTitleColor:[UIColor colorWithRed:66/255.0 green:122/255.0 blue:59/255.0 alpha:1] forState:UIControlStateHighlighted];
+    [startGameButton setTitleColor:[UIColor colorWithRed:123.0/255.0 green:146.0/255.0 blue:120.0/255.0 alpha:1] forState:UIControlStateDisabled];
+    [startGameButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    [smallChipButton.titleLabel setFont:[UIFont fontWithName:@"American Captain" size:30]];
+    [smallChipButton setTitleColor:[UIColor colorWithRed:78.0/255.0 green:149.0/255.0 blue:69.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [smallChipButton setTitleColor:[UIColor colorWithRed:66/255.0 green:122/255.0 blue:59/255.0 alpha:1] forState:UIControlStateHighlighted];
+    [smallChipButton setTitleColor:[UIColor colorWithRed:123.0/255.0 green:146.0/255.0 blue:120.0/255.0 alpha:1] forState:UIControlStateDisabled];
+    [smallChipButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    [bigChipButton.titleLabel setFont:[UIFont fontWithName:@"American Captain" size:30]];
+    [bigChipButton setTitleColor:[UIColor colorWithRed:78.0/255.0 green:149.0/255.0 blue:69.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [bigChipButton setTitleColor:[UIColor colorWithRed:66/255.0 green:122/255.0 blue:59/255.0 alpha:1] forState:UIControlStateHighlighted];
+    [bigChipButton setTitleColor:[UIColor colorWithRed:123.0/255.0 green:146.0/255.0 blue:120.0/255.0 alpha:1] forState:UIControlStateDisabled];
+    [bigChipButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
     [super viewDidLoad];
-    //splash screen
     
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ipad-felt.png"]];
-    
-    //self.menuView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Leather3.png"]];
     self.menuView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lg-stitched-leather.png"]];
+    
     // Prevent screen from going to sleep, thus
     // preventing unwanted Bluetooth disconnection
     [UIApplication sharedApplication].idleTimerDisabled = YES;
@@ -80,7 +117,6 @@
     [balanceTextField setText:[NSString stringWithFormat:@"%@",[moneyFormatter stringFromNumber:[NSNumber numberWithFloat:5.00]]]];
     
     smallChipSetSelected = 1;
-    
     
     
 }
@@ -142,8 +178,6 @@
     
     aboutTextView.text = [NSString stringWithFormat:@"Designed and Developed by:\nMatt Wahlig\nDanny Franklin\nMatthew Johnson\nMingyao Zhu\nRyan Burr"];
     
-    
-    
 }
 
 - (void) test {
@@ -197,7 +231,7 @@
     [cell.textLabel setText:tempPlayer.playerName];
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     [cell.textLabel setAlpha:0.5];
-    [cell.textLabel setFont:[UIFont fontWithName:@"CooperBeckerPosterBlack" size:20]];
+    [cell.textLabel setFont:[UIFont fontWithName:@"Comfortaa" size:20]];
     return cell;
 }
 
@@ -245,7 +279,7 @@
     AudioServicesCreateSystemSoundID(soundFileURLRef,  &soundID);
     AudioServicesPlaySystemSound(soundID);
     
-    pp.image = [UIImage imageNamed:@"pp_iphone_logo.png"];
+    pp.image = [UIImage imageNamed:@"pokerpad_icon.png"];
     
     
     
@@ -311,7 +345,7 @@
     menuView.frame = newFrame;
     //menuView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Leather5.png"]];
     menuView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"sm-stitched-leather.png"]];
-    self.menuView.center = CGPointMake(132, self.menuView.center.y);
+    self.menuView.center = CGPointMake(122, self.menuView.center.y);
     
     [UIView beginAnimations:@"MoveMenuViewDown" context:NULL];
     [UIView setAnimationDuration:.8f];
@@ -702,15 +736,16 @@
 }
 
 -(void) setFonts {
-    [titleLabel setFont:[UIFont fontWithName:@"CooperBeckerPosterBlack" size:20]];
-    [gameTitleLabel setFont:[UIFont fontWithName:@"CooperBeckerPosterBlack" size:50]];
-    [playersLabel setFont:[UIFont fontWithName:@"CooperBeckerPosterBlack" size:28]];
-    [smallBlindLabel setFont:[UIFont fontWithName:@"CooperBeckerPosterBlack" size:20]];
-    [bigBlindLabel setFont:[UIFont fontWithName:@"CooperBeckerPosterBlack" size:20]];
-    [startingBalanceLabel setFont:[UIFont fontWithName:@"CooperBeckerPosterBlack" size:20]];
-    [smallBlindTextField setFont:[UIFont fontWithName:@"CooperBeckerPosterBlack" size:17]];
-    [bigBlindTextField setFont:[UIFont fontWithName:@"CooperBeckerPosterBlack" size:17]];
-    [balanceTextField setFont:[UIFont fontWithName:@"CooperBeckerPosterBlack" size:17]];
+    [titleLabel setFont:[UIFont fontWithName:@"Comfortaa" size:20]];
+    [gameTitleLabel setFont:[UIFont fontWithName:@"American Captain" size:65]];
+    [gameTitleLabel setTextColor:[UIColor colorWithRed:78.0/255.0 green:149.0/255.0 blue:69.0/255.0 alpha:1]];
+    [playersLabel setFont:[UIFont fontWithName:@"Comfortaa" size:28]];
+    [smallBlindLabel setFont:[UIFont fontWithName:@"Comfortaa" size:20]];
+    [bigBlindLabel setFont:[UIFont fontWithName:@"Comfortaa" size:20]];
+    [startingBalanceLabel setFont:[UIFont fontWithName:@"Comfortaa" size:20]];
+    [smallBlindTextField setFont:[UIFont fontWithName:@"Comfortaa" size:17]];
+    [bigBlindTextField setFont:[UIFont fontWithName:@"Comfortaa" size:17]];
+    [balanceTextField setFont:[UIFont fontWithName:@"Comfortaa" size:17]];
 }
 
 -(IBAction)enableTableEdit:(id)sender {

@@ -15,6 +15,7 @@
 #import "handComboView.h"
 #import "ATSDragToReorderTableViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import <dispatch/dispatch.h>
 
 @class GameScreenViewController;
 @class ServerBluetoothController;
@@ -46,6 +47,7 @@
     /* settingsView Interface Elements */
 
     IBOutlet UIButton *startGameButton, *smallChipButton, *bigChipButton;
+    IBOutlet UIButton *btIndicator;
     IBOutlet UITableView *playersTableView;
     PlayerTableCell *playerCell;
     UITextField *balanceTextField;
@@ -103,6 +105,7 @@
 @property (nonatomic, retain) UIButton *createGameButton;
 @property (nonatomic, retain) UIButton *helpButton;
 @property (nonatomic, retain) UIButton *aboutButton;
+@property (nonatomic, retain) UIButton *btIndicator;
 
 @property (nonatomic, retain) UIButton *startGameButton, *smallChipButton, *bigChipButton;
 

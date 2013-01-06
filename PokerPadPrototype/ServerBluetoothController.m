@@ -47,6 +47,7 @@
         case GKPeerStateAvailable:
         {
             NSLog(@"Peer is available: %@", peerID);
+            viewController.btIndicator.imageView.image = [UIImage imageNamed:@"bt-on.png"];
             break;
         }
         case GKPeerStateConnecting:
@@ -57,6 +58,7 @@
         case GKPeerStateUnavailable:
         {
             NSLog(@"Peer is unavailable: %@", peerID);
+            viewController.btIndicator.imageView.image = [UIImage imageNamed:@"bt-off.png"];
             break;
         }
         case GKPeerStateConnected:
@@ -391,7 +393,6 @@
  */
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
     NSLog(@"Peer connection failed with error %@",[error localizedDescription]);
-
 }
 
 /* Indicates an error occurred with the session such as failing to make available.

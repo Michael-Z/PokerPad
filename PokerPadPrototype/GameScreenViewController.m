@@ -67,6 +67,8 @@
 
 @synthesize optionsView;
 
+@synthesize handsPlayed;
+
 #define PI 3.14159
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -235,6 +237,7 @@
 
 - (void)viewDidLoad
 {
+    handsPlayed = 0;
     handStarted = NO;
     viewLoaded = NO;
     endGameButton.hidden = YES;
@@ -352,7 +355,21 @@
     
     [self sendClientsUpdatedPot:potValue AndCurrentBet:currentBet];
     
-
+    // check if this is first hand played (blind chips not moved)
+    if (handsPlayed > 0) {
+        // find previous blind players
+        Player *prevSmallBlind = [self findSmallBlindPlayer];
+        Player *prevBigBlind = [self findBigBlindPlayer];
+        
+        // send flag to player, telling player screen to remove blind chip
+        
+        NSMutableArray *removeBlindFlag = [[NSMutableArray alloc] initWithObjects:[[NSNumber alloc] initWithInt:(11)], nil];
+        
+        NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:removeBlindFlag];
+        
+        [prevSmallBlind sendData:dataToSend];
+        [prevBigBlind sendData:dataToSend];
+    }
     
     [betRightArray removeAllObjects];
     [betWrongArray removeAllObjects];
